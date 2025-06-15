@@ -2,8 +2,10 @@
 
  Home page ![Screenshot (565)](https://github.com/user-attachments/assets/78ef8f09-7a16-4374-8e1f-3326a6297061)
  Prediction page ![Screenshot (568)](https://github.com/user-attachments/assets/cef2a01e-dae0-4873-bc4f-6530452759c6)
- ![Screenshot (568)](https://github.com/user-attachments/assets/9ccdb63c-66ea-4d24-9a2c-7523880def2f)
- About page ![Screenshot (570)](https://github.com/user-attachments/assets/9555045d-573d-4a6b-8194-1076f7ff6f97)
+ ![Screenshot (567)](https://github.com/user-attachments/assets/68683081-41ad-4604-87c2-af14687d3d48)
+ ![Screenshot (573)](https://github.com/user-attachments/assets/95f447a7-95f0-4067-8842-bea6bd89442d)
+Suplliment ![Screenshot (569)](https://github.com/user-attachments/assets/e7ea214e-5455-4ffb-abb2-c0990aa08d0c)
+About page ![Screenshot (570)](https://github.com/user-attachments/assets/9555045d-573d-4a6b-8194-1076f7ff6f97)
 
 
  
