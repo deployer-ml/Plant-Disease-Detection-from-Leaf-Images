@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Professional AI and supplements platform">
+    <meta name="keywords" content="AI, supplements, health, technology">
+    <meta name="author" content="Manthan Bhikadiya & Krishna Baldaniya">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bttn.css/0.2.4/bttn.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>{% block pagetitle %}{% endblock pagetitle %}</title>
+    
+    <style>
+        :root {
+            /* Enhanced Color Palette */
+            --primary-dark: #1A3A1F;  /* Deep forest green */
+            --primary-color: #2D6A4F;  /* Nature green */
+            --primary-medium: #40916C; /* Vibrant green */
+            --primary-light: #74C69D;  /* Soft mint */
+            --primary-soft: #D8F3DC;   /* Very light mint */
+            
+            --secondary-dark: #B68A2E;  /* Gold */
+            --secondary-color: #D4A017; /* Warm gold */
+            --secondary-light: #F5CB5C; /* Light gold */
+            
+            --accent-dark: #1D4E89;    /* Navy blue */
+            --accent-color: #2E86AB;    /* Teal blue */
+            --accent-light: #6AB7D8;    /* Sky blue */
+            
+            --neutral-dark: #212529;
+            --neutral-medium: #495057;
+            --neutral-light: #F8F9FA;
+            
+            --success-color: #4BB543;
+            --warning-color: #FFC107;
+            --danger-color: #DC3545;
+            
+            --text-dark: #212529;
+            --text-medium: #495057;
+            --text-light: #F8F9FA;
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-inset: inset 0 1px 2px rgba(0,0,0,0.075);
+            
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--neutral-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .navbar {
+            background-color: var(--primary-dark) !important;
+            box-shadow: var(--shadow-md);
+            padding: 0.8rem 1rem;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 1rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: white !important;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: var(--transition);
+            border-radius: 4px;
+            margin: 0 0.2rem;
+            position: relative;
+        }
+
+        .nav-link:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover:before {
+            visibility: visible;
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-light) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            font-weight: 600;
+            color: var(--secondary-color) !important;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2.5rem 0;
+            background-color: var(--neutral-light);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section:after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: var(--neutral-light);
+            transform: skewY(-2deg);
+            z-index: 1;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+            color: white;
+            font-weight: 600;
+            border-radius: 12px 12px 0 0 !important;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary-color), var(--primary-medium));
+            border: none;
+            font-weight: 500;
+            padding: 0.6rem 1.75rem;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-sm);
+            border-radius: 8px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent-dark);
+            color: white;
+        }
+
+        label.custom-file-label {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+            color: white;
+            padding: 0.8rem 1.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+            box-shadow: var(--shadow-sm);
+            border: none;
+        }
+
+        label.custom-file-label:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .file-upload input[type='file'] {
+            display: none;
+        }
+
+        #file-chosen {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+
+        .footer-basic {
+            padding: 3rem 0 2rem;
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+            color: var(--text-light);
+            margin-top: auto;
+            position: relative;
+        }
+
+        .footer-basic:before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: var(--neutral-light);
+            transform: skewY(-2deg);
+            z-index: 1;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-basic li {
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        .footer-basic ul a {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-basic ul a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .footer-basic ul a:hover {
+            color: var(--secondary-light);
+        }
+
+        .footer-basic ul a:hover:after {
+            width: 100%;
+        }
+
+        .footer-basic .social {
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+
+        .footer-basic .social > a {
+            font-size: 1.25rem;
+            width: 42px;
+            height: 42px;
+            line-height: 42px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 0 10px;
+            color: var(--text-light);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .footer-basic .social > a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-dark);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer-basic .copyright {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0;
+        }
+
+        /* Gradient Backgrounds */
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+        }
+
+        .bg-gradient-secondary {
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary-color) 100%);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+            
+            .nav-link {
+                padding: 0.5rem !important;
+                margin: 0.25rem 0;
+            }
+            
+            .footer-basic li {
+                display: block;
+                padding: 8px 0;
+            }
+            
+            .main-content {
+                padding: 1.5rem 0;
+            }
+            
+            .hero-section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animated {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Utility classes */
+        .text-gradient {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .rounded-xl {
+            border-radius: 12px;
+        }
+
+        .shadow-hover {
+            transition: var(--transition);
+        }
+
+        .shadow-hover:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .border-accent {
+            border-left: 4px solid var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-leaf me-2"></i><span class="text-gradient">GreenTech</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index"><i class="fas fa-brain me-1"></i> AI Engine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/market"><i class="fas fa-pills me-1"></i> Supplements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fas fa-user me-1"></i> About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {% block hero %}{% endblock hero %}
+        
+        <div class="container animated">
+            {% block body %}{% endblock body %}
+        </div>
+    </main>
+
+    <div class="footer-basic">
+        <div class="footer-content">
+            <div class="container">
+                <div class="social">
+                    <a target="_blank" href="mailto:krsikx@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/krsikx_india/" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/company/krsikx-india-llp/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a target="_blank" href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a target="_blank" href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="/"><i class="fas fa-home me-1"></i> Home</a></li>
+                    <li class="list-inline-item"><a target="_blank" href="https://www.krsikx.com/"><i class="fas fa-cogs me-1"></i> Services</a></li>
+                    <li class="list-inline-item"><a target="_blank" href="https://www.krsikx.com/copy-of-solutions"><i class="fas fa-info-circle me-1"></i> About</a></li>
+                    <li class="list-inline-item"><a href="/index"><i class="fas fa-brain me-1"></i> AI Engine</a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fas fa-question-circle me-1"></i> FAQ</a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fas fa-lock me-1"></i> Privacy</a></li>
+                </ul>
+                <p class="copyright">Created by Manthan Bhikadiya & Krishna Baldaniya © 2023. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    
+    <!-- Enhanced JavaScript for interactivity -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const animateElements = () => {
+            const elements = document.querySelectorAll('.animated');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementPosition < windowHeight - elementVisible) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animations
+        window.addEventListener('load', animateElements);
+        window.addEventListener('scroll', animateElements);
+
+        // Tooltip initialization
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
+</html>

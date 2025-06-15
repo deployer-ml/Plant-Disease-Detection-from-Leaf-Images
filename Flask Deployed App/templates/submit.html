@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+{{title}} | GreenTech AI
+{% endblock pagetitle %}
+
+{% block body %}
+<style>
+  /* Custom Color Variables */
+  :root {
+    --primary-green: #2E7D32;
+    --dark-green: #1B5E20;
+    --light-green: #81C784;
+    --accent-gold: #FFC107;
+    --accent-orange: #FF9800;
+    --pure-white: #FFFFFF;
+    --light-gray: #F5F7FA;
+    --dark-text: #263238;
+    --healthy-color: #4CAF50;
+    --diseased-color: #F44336;
+  }
+
+  /* Main Styles */
+  .detail-header {
+    background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 3rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .detail-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .image-container {
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: var(--pure-white);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin: 0 auto 3rem;
+    max-width: 400px;
+    border-top: 4px solid var(--accent-gold);
+  }
+
+  .detail-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .image-container:hover .detail-image {
+    transform: scale(1.02);
+  }
+
+  .info-card {
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background: var(--pure-white);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border-top: 4px solid var(--light-green);
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  }
+
+  .card-title {
+    color: var(--dark-green);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+
+  .card-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--light-green);
+  }
+
+  .healthy .card-title:after {
+    background: var(--healthy-color);
+  }
+
+  .diseased .card-title:after {
+    background: var(--diseased-color);
+  }
+
+  .card-text {
+    color: var(--dark-text);
+    line-height: 1.7;
+  }
+
+  .supplement-card {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .supplement-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease;
+  }
+
+  .supplement-image:hover {
+    transform: scale(1.05);
+  }
+
+  .supplement-name {
+    color: var(--dark-green);
+    font-weight: 500;
+    margin: 1rem 0;
+  }
+
+  .buy-btn {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .buy-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
+    color: white;
+    text-decoration: none;
+  }
+
+  .buy-btn i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .buy-btn:hover i {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    .detail-title {
+      font-size: 2rem;
+    }
+    
+    .image-container {
+      margin-bottom: 2rem;
+    }
+    
+    .info-card {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>
+
+<div class="detail-header">
+  <div class="container">
+    <h1 class="detail-title">{{title}} 🍂</h1>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Plant Image -->
+  <div class="image-container">
+    <img src="{{image_url}}" class="detail-image" alt="{{title}}">
+  </div>
+
+  <!-- Description Card -->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="info-card {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or pred==24 or pred==25 or pred==28 or pred==38 %}healthy{% else %}diseased{% endif %}">
+        <h5 class="card-title">
+          {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or pred==24 or pred==25 or pred==28 or pred==38 %}
+          Tips to Grow Healthy Plants
+          {% else %}
+          Detailed Description
+          {% endif %}
+        </h5>
+        <p class="card-text">{{desc}}</p>
+      </div>
+    </div>
+
+    <!-- Prevention/Benefits Card -->
+    <div class="col-lg-6">
+      <div class="info-card {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or pred==24 or pred==25 or pred==28 or pred==38 %}healthy{% else %}diseased{% endif %}">
+        <h5 class="card-title">
+          {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or pred==24 or pred==25 or pred==28 or pred==38 %}
+          Key Benefits
+          {% else %}
+          Prevention Methods
+          {% endif %}
+        </h5>
+        <p class="card-text">{{prevent}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supplement/Fertilizer Card -->
+  {% if pred!=4 %}
+  <div class="row justify-content-center mt-4">
+    <div class="col-lg-8">
+      <div class="info-card supplement-card">
+        <h5 class="card-title">
+          {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or pred==24 or pred==25 or pred==28 or pred==38 %}
+          Recommended Fertilizer
+          {% else %}
+          Suggested Supplement
+          {% endif %}
+        </h5>
+        <img src="{{simage}}" class="supplement-image" alt="{{sname}}">
+        <h6 class="supplement-name">{{sname}}</h6>
+        <a target="_blank" href="{{buy_link}}" class="buy-btn">
+          Buy Now <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock body %}
